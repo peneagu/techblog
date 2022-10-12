@@ -3,6 +3,4 @@ async function createPostHandler(event) {
 
     document.location.replace('/dashboard/new')
 }
-
-
 document.querySelector('#create-new-post').addEventListener('click', createPostHandler);

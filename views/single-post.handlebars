@@ -1,23 +1,35 @@
-<a href="/dashboard" class="go-back"> &larr; Back to dashboard</a>
-<br>
-<br>
-
-{{> post-info post}}
-
-{{#if loggedIn}}
-<form class="comment-form">
-    <div>
-        <textarea name="comment-body"></textarea>
+<div>
+    <div class="post-container" data-post-id="{{id}}">
+        <h2>{{title}}</h2>
+        <h3>Created by {{user.username}} on {{format_date date_created}}</h3>
+        <p>{{contents}}</p>
     </div>
 
-    <div>
-        <button type="submit">add comment</button>
+    <div class = "comments">
+    <h4>Comments</h4>
+    {{#if comments.length}}
+    {{#each comments as |comment|}}
+    <p>{{comment.comment}} by {{comment.user.username}} on {{format_date comment.date_created}}</p>
+    {{/each}}
     </div>
-</form>
+    {{/if}}
+</div>
+
+{{#if logged_in}}
+<div class="comment-box-div">
+    <h3> Add a Comment</h3>
+    <form class="comment-form">
+    <textarea id="comment-box-input"></textarea>
+    <div class="button-div">
+    <button class="submitting-button" type="submit">submit</button>
+    </div>
+    </form>
+</div>
+{{else}}
+<p class="login-to-comment">Login to comment</p>
+<div class="button-div">
+    <button onclick="window.location.href='/login';">login</button>
+</div>
 {{/if}}
 
-{{> comments post.comments}}
-
-{{#if loggedIn}}
-<script src="/javascript/comment.js"></script>
-{{/if}}
+<script src="../public/javascript/comment.js"></script>

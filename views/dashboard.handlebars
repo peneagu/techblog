@@ -1,20 +1,24 @@
-<section class="new-post-section">
-    <button type="submit" class="btn" id="create-new-post">+ Create new post</button>
-</section>
+<h2 style="text-align: center">My Posts</h2>
+{{#each posts as |post|}}
+<div class="post-container">
+    <h2>{{post.title}}</h2>
+    <h3>Created on {{format_date post.date_created}}</h3>
+    <p>{{post.contents}}</p>
+    <div class="two-buttons">
 
+    <div class="edit-button">
+    <button onclick="window.location.href='/edit-post/{{post.id}}';">edit</button>
+    </div>
 
-{{#if posts.length}}
-<section>
-    <h2>Your Dashboard</h2>
-    <ul class="post-list">
-        {{#each posts as |post|}}
-        <li>
-            {{> post-info post}}
-            <a href="/dashboard/edit/{{post.id}}" class="edit-link">edit post</a>
-        </li>
-        {{/each}}
-    </ul>
-</section>
-{{/if}}
+    <div class="delete-button">
+<button data-id="{{post.id}}">delete</button>
+    </div>
 
-<script src="/javascript/create-post.js"></script>
+    </div>
+</div>
+{{/each}}
+<div class="button-div">
+<button onclick="window.location.href='/new-post';">New post</button>
+</div>
+
+<script src="../public/javascript/create-post.js"></script>

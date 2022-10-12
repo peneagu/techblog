@@ -8,11 +8,12 @@ const sequelize = require('../config/connection');
 class Post extends Model {}
 
 Post.init({
-    id: {
-        type: DataTypes.INTEGER,
+    content: {
+        type: DataTypes.STRING,
         allowNull: false,
-        primaryKey: true,
-        autoIncrement: true
+        validate: {
+            len: [1]
+        }
     },
     title: {
         type: DataTypes.STRING,
@@ -21,12 +22,11 @@ Post.init({
             len: [1]
         }
     },
-    content: {
-        type: DataTypes.STRING,
+    id: {
+        type: DataTypes.INTEGER,
         allowNull: false,
-        validate: {
-            len: [1]
-        }
+        primaryKey: true,
+        autoIncrement: true
     },
     user_id: {
         type: DataTypes.INTEGER,
