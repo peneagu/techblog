@@ -16,8 +16,6 @@ const PORT = process.env.PORT || 3001;
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
-
-
 const sess = {
     secret: process.env.DB_SECRET,
     cookie: {},
